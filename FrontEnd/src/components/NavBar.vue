@@ -1,37 +1,5 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import VueRouter from 'vue-router'
-import vueResource from 'vue-resource'
-import Questions from './components/Questions'
-import About from './components/About'
-import Add from './components/Add'
-import Edit from './components/Edit'
-import QuestionDetails from './components/QuestionDetails'
-import StudentView from './components/StudentView'
-
-Vue.use(vueResource)
-Vue.use(VueRouter)
-
-const router = new VueRouter({
-  mode: 'history',
-  base: __dirname,
-  routes: [
-    {path:'/', component: Questions},
-    {path: '/about', component: About},
-    {path: '/add', component: Add},
-    {path: '/questiondetails/', component: QuestionDetails},
-    {path: '/edit/:id', component: Edit},
-    {path: '/studentview', component: StudentView},
-  ]
-})
-
-/* eslint-disable no-new */
-new Vue({
-  router,
-  template: `
-    <div id="app">
+<template>
+ <div id="app">
       <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -59,5 +27,19 @@ new Vue({
     </nav>
       <router-view></router-view>
     </div>
-  `
-}).$mount('#app')
+</template>
+
+<script>
+export default {
+  name: 'navbar',
+  data () {
+    return {
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>
