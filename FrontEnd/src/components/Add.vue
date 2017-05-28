@@ -9,7 +9,7 @@
             <textarea  type = "text" class = "form-control" placeholder="Add your question"></textarea>
         </div>
         <div class="well">
-            <h4>Answers</h4>
+            <label>Answers</label>
 
             <div class="form-group">
                 <div class="btn-group" data-toggle="buttons" v-radio="value">       
