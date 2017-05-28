@@ -1,0 +1,26 @@
+{
+  "name": "base2_p1",
+  "version": "1.0.0",
+  "description": "proyecto de teoria de base de datos 2.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmaldonados/base2_p1.git"
+  },
+  "author": "`Félix Maldonado, Alexy Cruz, Jose Fiallos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fmaldonados/base2_p1/issues"
+  },
+  "homepage": "https://github.com/fmaldonados/base2_p1#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "documentdb": "^1.11.0",
+    "doqmentdb": "^0.3.3"
+  }
+}
