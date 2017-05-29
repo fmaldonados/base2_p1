@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/fmaldonados/base2_p1#readme",
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.15.2",
+    "connect": "^3.6.2",
     "cors": "^2.8.3",
-    "express": "^4.15.3",
     "documentdb": "^1.11.0",
-    "doqmentdb": "^0.3.3"
+    "doqmentdb": "^0.3.3",
+    "express": "^4.14.0"
   }
 }
