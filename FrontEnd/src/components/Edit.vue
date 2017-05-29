@@ -6,25 +6,25 @@
         <div class="well">
             <label>Exam Question</label>
             <br>
-            <textarea  type = "text" class = "form-control" placeholder="Add your question"></textarea>
+            <textarea  type = "text" class = "form-control" placeholder="Add your question" v-model="question.MainQuestion"></textarea>
         </div>
         <div class="well">
             <h4>Answers</h4>
             <div class="form-group">
                 <label>Answer #1</label>
-                <input type="text" class="form-control" placeholder="Type option 1">
+                <input type="text" class="form-control" placeholder="Type option 1" v-model="question.Answer1">
             </div>
             <div class="form-group">
                 <label>Answer#2</label>
-                <input type="text" class="form-control" placeholder="Type option 2">
+                <input type="text" class="form-control" placeholder="Type option 2" v-model="question.Answer2">
             </div>
             <div class="form-group">
                 <label>Answer#3</label>
-                <input type="text" class="form-control" placeholder="Type option 3">
+                <input type="text" class="form-control" placeholder="Type option 3" v-model="question.Answer3">
             </div>
             <div class="form-group">
                 <label>Answer#4</label>
-                <input type="text" class="form-control" placeholder="Type option 4">
+                <input type="text" class="form-control" placeholder="Type option 4" v-model="question.Answer4">
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
