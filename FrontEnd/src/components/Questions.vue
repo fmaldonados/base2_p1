@@ -28,7 +28,6 @@
       return {
         questions: [],
         alert:'',
-        filterInput:''
       }
     },
     methods: {

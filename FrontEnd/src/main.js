@@ -9,6 +9,7 @@ import About from './components/About'
 import Add from './components/Add'
 import Edit from './components/Edit'
 import QuestionDetails from './components/QuestionDetails'
+import StudentView from './components/StudentView'
 
 Vue.use(vueResource)
 Vue.use(VueRouter)
@@ -22,6 +23,7 @@ const router = new VueRouter({
     {path: '/add', component: Add},
     {path: '/questiondetails/', component: QuestionDetails},
     {path: '/edit/:id', component: Edit},
+    {path: '/studentview', component: StudentView},
   ]
 })
 
@@ -47,7 +49,7 @@ new Vue({
             <li><router-link to="/about">About</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><router-link to="/">Log Out</router-link></li>
+            <li><router-link to="/studentview">Log Out</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><router-link to="/add">Add Question</router-link></li>
