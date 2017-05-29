@@ -1,11 +1,11 @@
-import 'whatwg-fetch':
+import 'whatwg-fetch';
 import baseUrl from '../baseUrl';
 
 
-getPregunta=() =>
-fetch(`${baseUrl.uri}/Add`,
-method='Post',
-headers:{
-Accept:'aplication'
-},
-});
+const getPregunta = () =>
+    fetch(`${baseUrl.uri}/add`, {
+        method = 'Post',
+        headers: {
+            Accept: 'aplication/JSON'
+        },
+    });

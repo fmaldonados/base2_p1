@@ -77,7 +77,7 @@
                         CorrectAnswer: this.item.value,      
                     }
 
-                    this.$http.post('http://slimapp/api/question/add', newQuestion)
+                    this.$http.post('http://localhost:3000/Add', newQuestion)
                         .then(function(response){
                             this.$router.push({path: '/', query: {alert: 'Question Added'}});
                         });

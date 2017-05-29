@@ -20,12 +20,8 @@ app.get('/hola', function (req, res) {
     });
 });
 
-app.post('/add',function (req, res) {
-    console.log(req.body);
-});
-
-app.post('/signIn', function (req, res) {
-    c.insertarPregunta(req.body.pregunta,req.body.respuesta1,req.body.respuesta2,req.body.respuesta3,req.body.respuesta4,req.body.correcta).then(function(_result){
+app.post('/Add', function (req, res) {
+    c.insertarPregunta(req.body.MainQuestion,req.body.Answer1,req.body.Answer2,req.body.Answer3,req.body.Answer4,req.body.correct).then(function(_result){
         res.send(_result);
     });
     

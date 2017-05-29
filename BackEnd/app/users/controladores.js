@@ -64,6 +64,7 @@ exports.funciones = {
                             resolve("La pregunta ya existe");
                             
                         }else{
+                            console.log("Entro aqui");
                             var a= 1;
                             a =a + parseInt(results[0].$1);
                             var b = [`${respuesta1}`,`${respuesta2}`,`${respuesta3}`,`${respuesta4}`];
