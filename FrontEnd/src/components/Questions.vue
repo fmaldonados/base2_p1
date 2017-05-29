@@ -11,10 +11,10 @@
           </tr>
         </thead>
         <tbody>
-            <tr v-for="question in questions">
-              <td>{{question.MainQuestion}}</td>
+            
+              <td>Pregunta1</td>
               <td><router-link class="btn btn-default" to="/QuestionDetails/">View</router-link></td>
-            </tr>
+            
         </tbody>
     </table>
   </div>

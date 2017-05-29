@@ -34,7 +34,7 @@
             </div>  
             <h4>Options</h4>
             <div class="form-group">
-                <basic-select :options="options1" :selected-option="item1" placeholder="select item" @select="onSelect"></basic-select>
+                <basic-select :options="options" :selected-option="item" placeholder="select item" @select="onSelect" v-model = "question.CorrectAnswer"></basic-select>
             </div>
         </div>
 
@@ -53,7 +53,7 @@
                 question: {},
                 answers: [],
                 alert:'',
-                options1: [
+                options: [
                     { value: '0', text: 'Respuesta #1' },
                     { value: '1', text: 'Respuesta #2' },
                     { value: '2', text: 'Respuesta #3' },
@@ -62,6 +62,7 @@
                 searchText: '', // If value is falsy, reset searchText & searchItem 
                 item: {
                     value: '',
+                    item: '',
                 }
             }
         },
@@ -72,7 +73,8 @@
                         Answer1: this.question.Answer1,
                         Answer2: this.question.Answer2,
                         Answer3: this.question.Answer3,
-                        Answer4: this.question.Answer4
+                        Answer4: this.question.Answer4,
+                        CorrectAnswer: this.item.value,      
                     }
 
                     this.$http.post('http://slimapp/api/question/add', newQuestion)
