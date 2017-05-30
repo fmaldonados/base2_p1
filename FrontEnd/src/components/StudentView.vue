@@ -215,6 +215,12 @@ export default {
         // select option from parent component 
         this.item = this.options[0]
       },
+       fetchQuestion(){
+            this.$http.get('http://localhost:3000/Add')
+            .then(function(response){
+                this.question = response.body;
+            });
+        },
       SubmitExam(e){
                 items :[
                   {value: item1.value},

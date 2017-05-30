@@ -5,11 +5,11 @@
 
         <fieldset>
 
-            <form action="javascript:void(0);" method="get">
+            <form action="javascript:void(0);" method="get" v-on:submit="verifyuser">
 
-                <input type="email" required value="Email" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' " v-model="question.Answer1"> <!-- JS because of IE support; better: placeholder="Email" -->
+                <input v-model="question.Answer1" type="email" required value="Email" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' " id="q1" > <!-- JS because of IE support; better: placeholder="Email" -->
 
-                <input type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " v-model="question.Answer2"> <!-- JS because of IE support; better: placeholder="Password" -->
+                <input v-model="question.Answer2" type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "  id ="q2"> <!-- JS because of IE support; better: placeholder="Password" -->
 
                 <input type="submit" value="Login" >
 
@@ -22,12 +22,14 @@
 
   <script>
   	 import { BasicSelect } from 'vue-search-select'
+  	 import VueLocalStorage from 'vue-localstorage'
+   
     import Alert from './Alert'
     export default {
-        name: 'add',
+        name: 'login',
         data () {
             return {
-                question,
+                question:"",
                 answers: [],
                 alert:'',
                 options: [
@@ -44,22 +46,29 @@
             }
         },
         methods: {
+
             verifyuser(e){
+            	var mad=$("#q1").val();
+            	var med=$("#q2").val();
+            	 
+            	 localStorage.setItem('storedData','asdasd');
+            	alert(mad);
                     let newQuestion = {
-                        user: this.question.Answer1,
-                        password: this.question.Answer2,
+                        user: mad,
+                        password: med,
                           
                     }
-
+                    alert(newQuestion.user);
                     this.$http.post('http://localhost:3000/login', newQuestion)
+				    			                    	
                         .then(function(response){
                             console.log("EBTRIO");
-                            this.question = response.body;
-                            paraver();
-                            this.$router.push({path: '/', query: {alert: 'Question Added'}});
+                            //alert(response.body);
+                           
+                           
                         });
 
-                    e.preventDefault();
+                   e.preventDefault();
             },
             paraver(){
             	if(this.question==='true'){
@@ -71,6 +80,7 @@
             BasicSelect
         }
     }
+}
   </script>
 
 

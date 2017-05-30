@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+ <div id="app">
       <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
@@ -13,7 +13,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><router-link to="Questions/">Home</router-link></li>
+            <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/about">About</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -30,13 +30,29 @@
 </template>
 
 <script>
+import VueLocalStorage from 'vue-localstorage'
 
 export default {
   name: 'app',
-  components: {
-   
-  }
-}
+  data () {
+            return {
+             showDiv:"false"               
+            }
+        },
+        methods: {
+            vare(){
+            Vue.use(VueLocalStorage);
+            showDiv= Vue.$localStorage.get('propertyThatNotExists', 'false')
+            }
+            
+
+         
+            },
+        components: {
+         
+        }
+    }
+
 </script>
 
 <style>
