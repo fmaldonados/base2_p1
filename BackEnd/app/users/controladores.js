@@ -80,16 +80,17 @@ exports.funciones = {
     login: function (_user, _password) {
         var p = new Promise(function (resolve, reject) {
             userC.findOne({ user: `${_user}`, password: `${_password}` }).then(function (res) {
-                    console.log(res);
-                        if (res) {
-                            console.log("El usuario existe");
-                            resolve(true);
-                        } else {
-                            console.log("el usuario no existe");
-                            resolve(false);
-                        }
-                    });
-            return p;
+                console.log(res);
+                if (res) {
+                    console.log("El usuario existe");
+                    resolve('true');
+                } else {
+                    console.log("el usuario no existe");
+                    resolve('false');
+                }
+            });
         });
+        return p;
+
     }
 }
