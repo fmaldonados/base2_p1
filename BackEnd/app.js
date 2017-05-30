@@ -26,6 +26,13 @@ app.post('/login', function(req,res){
         res.send(_result);
     });
 })
+app.get('/StudentView', function(req,res){
+    c.getPrueba().then(function(_result){
+        console.log("hola");
+        res.send(_result);
+    });
+})
+
 app.use(cors());
 
 

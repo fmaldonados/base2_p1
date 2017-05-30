@@ -10,10 +10,10 @@ var preguntaC = db.use('pregunta');
 var userC = db.use('user');
 
 exports.funciones = {
-    getPregunta: function () {
+    getPregunta: function (id) {
         var p = new Promise(function (resolve, reject) {
             console.log(client.getDatabaseAccount);
-            client.queryDocuments(`${collectionUrl}/${configdb.collection.pregunta}`, "select * from f").toArray((err, results) => {
+            client.queryDocuments(`${collectionUrl}/${configdb.collection.pregunta}`, "select f.id,f.pregunta,f.respuestas,f.correcta from f where f.id ='" + id + "'").toArray((err, results) => {
 
                 if (err) {
                     console.log("ColecctionUrl" + JSON.stringify(err));
@@ -32,7 +32,7 @@ exports.funciones = {
 
     insertarAlumno: function (_user, _password) {
         var p = new Promise(function (resolve, reject) {
-            client.queryDocuments(`${collectionUrl}/${configdb.collection.user}`, "select MAX(f.id) from f").toArray((err, results) => {
+            client.queryDocuments(`${collectionUrl}/${configdb.collection.user}`, "select COUNT(f.id) from f").toArray((err, results) => {
                 if (err) {
                     console.log("ColecctionUrl" + JSON.stringify(err));
                 } else {
@@ -55,7 +55,7 @@ exports.funciones = {
     },
     insertarPregunta: function (_pregunta, respuesta1, respuesta2, respuesta3, respuesta4, correcta) {
         var p = new Promise(function (resolve, reject) {
-            client.queryDocuments(`${collectionUrl}/${configdb.collection.pregunta}`, "select MAX(f.id) from f").toArray((err, results) => {
+            client.queryDocuments(`${collectionUrl}/${configdb.collection.pregunta}`, "select COUNT(f.id) from f").toArray((err, results) => {
                 if (err) {
                     console.log("ColecctionUrl" + JSON.stringify(err));
                 } else {
@@ -80,17 +80,63 @@ exports.funciones = {
     login: function (_user, _password) {
         var p = new Promise(function (resolve, reject) {
             userC.findOne({ user: `${_user}`, password: `${_password}` }).then(function (res) {
-                console.log(res);
                 if (res) {
                     console.log("El usuario existe");
-                    resolve('true');
+                    resolve("true");
                 } else {
                     console.log("el usuario no existe");
-                    resolve('false');
+                    resolve("false");
                 }
             });
         });
         return p;
 
+    },
+    getrandoms: function () {
+        var p = new Promise(function (resolve, reject) {
+            var arreglo = [];
+            client.queryDocuments(`${collectionUrl}/${configdb.collection.pregunta}`, "select COUNT(f.id) from f").toArray((err, results) => {
+                if (err) {
+                    console.log("ColecctionUrl" + JSON.stringify(err));
+                } else {
+                    var max = parseInt(results[0].$1);
+                    console.log(max);
+                    var a = 0;
+                    while (a < 10) {
+                        var random = Math.floor((Math.random() * max) + 1);
+                        //console.log(random);
+                        if (arreglo.indexOf(random) == (-1)) {
+                            arreglo[a] = random;
+                            a++;
+                        }
+                    }
+                    resolve(arreglo);
+                }
+            });
+
+        });
+        return p;
+    },
+    getPrueba: function () {
+        var a = this;
+        var arreglo = [];
+        var p = new Promise(function (resolve, reject) {
+            var index = 0;
+            a.getrandoms().then(function (_result) {
+                for (let res of _result) {
+                    a.getPregunta(res).then(function (_result1) {
+                        arreglo[index] = _result1;
+                        index++;
+                        if (index == 10) {
+                            resolve(arreglo);
+                        }
+                    });
+                }
+
+
+            });
+
+        });
+        return p;
     }
 }
