@@ -32,7 +32,7 @@
     },
     methods: {
       fetchQuestions(){
-        this.$http.get('http://slimapp/api/questions')
+        this.$http.get('http://localhost:3000/Add')
           .then(function(response){
             this.questions = response.body;
           });

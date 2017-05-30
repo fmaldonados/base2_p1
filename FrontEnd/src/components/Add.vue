@@ -79,6 +79,7 @@
 
                     this.$http.post('http://localhost:3000/Add', newQuestion)
                         .then(function(response){
+                            console.log("EBTRIO");
                             this.$router.push({path: '/', query: {alert: 'Question Added'}});
                         });
 
