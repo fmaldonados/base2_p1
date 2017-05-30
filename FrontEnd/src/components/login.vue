@@ -1,24 +1,22 @@
-  <template>
-  <div id="login-form">
-
-        <h1>Login</h1>
-
-        <fieldset>
-
-            <form action="javascript:void(0);" method="get" v-on:submit="verifyuser">
-
-                <input v-model="question.Answer1" type="email" required value="Email" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' " id="q1" > <!-- JS because of IE support; better: placeholder="Email" -->
-
-                <input v-model="question.Answer2" type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "  id ="q2"> <!-- JS because of IE support; better: placeholder="Password" -->
-
-                <input type="submit" value="Login" >
-
-            </form>
-
-        </fieldset>
-
-    </div> <!-- end login-form -->
-    </template>
+<template>
+   <div class="login container" id = "ContainerSize" >
+    <Alert v-if="alert" v-bind:message="alert" />
+    <h1 class="page-header" id = "Center" >Login</h1>
+    <form v-on:submit="verifyuser">
+        <div class="well" >
+            <div class="form-group" id = "InputSize">
+                <label>Email</label>
+                <input type="text" class="form-control" placeholder="Type your email" v-model="LoginUser.UserName">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Type your password" v-model="LoginUser.Password">
+            </div>
+        </div>
+        <router-link class="btn btn-primary" v-bind:to="'./questions'" id = "ColorBoton">Login</router-link>
+    </form>
+  </div>
+</template>
 
   <script>
   	 import { BasicSelect } from 'vue-search-select'
@@ -29,6 +27,7 @@
         name: 'login',
         data () {
             return {
+				LoginUser: {},
                 question:"",
                 answers: [],
                 alert:'',
@@ -46,26 +45,16 @@
             }
         },
         methods: {
-
             verifyuser(e){
-            	var mad=$("#q1").val();
-            	var med=$("#q2").val();
-            	 
-            	 localStorage.setItem('storedData','asdasd');
-            	alert(mad);
-                    let newQuestion = {
-                        user: mad,
-                        password: med,
-                          
+                    let User = {
+                        UserName: this.LoginUser.UserName,
+                        Password: this.LoginUser.Password,     
                     }
-                    alert(newQuestion.user);
-                    this.$http.post('http://localhost:3000/login', newQuestion)
-				    			                    	
+					console.log(User);
+
+                    this.$http.post('http://localhost:3000/login', User)
                         .then(function(response){
-                            console.log("EBTRIO");
-                            //alert(response.body);
-                           
-                           
+                            this.$router.push({path: '/', query: {alert: 'you are in'}});
                         });
 
                    e.preventDefault();
@@ -211,5 +200,32 @@ input[type="submit"] { cursor: pointer; }
 	margin: 0 10px 0 0;
 	text-align: center;
 	width: 20px;
+}
+
+#Center{  
+	text-align: center;
+	color: #F0FFFF;
+}
+
+#ColorBoton{
+	color: #F0FFFF;
+}
+
+#ContainerSize{
+	
+	padding-right: 800px;
+	text-align: center;
+	alignment: center;
+
+	background-color: #F0F8FF;
+  	background-image: url("imagen.jpg");
+	 
+	 position: fixed; 
+  	top: 0; 
+  	left: 0; 
+
+  	/* Preserve aspet ratio */
+  	min-width: 100%;
+  	min-height: 100%;
 }
  </style>
