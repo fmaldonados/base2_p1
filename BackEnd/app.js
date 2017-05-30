@@ -26,6 +26,9 @@ app.post('/Add', function (req, res) {
     });
     
 });
+app.post('/login', function(req,res){
+    c.login(req.body.user, req.body.password);
+})
 app.use(cors());
 
 
