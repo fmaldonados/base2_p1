@@ -7,9 +7,9 @@
 
             <form action="javascript:void(0);" method="get">
 
-                <input type="email" required value="Email" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' "> <!-- JS because of IE support; better: placeholder="Email" -->
+                <input type="email" required value="Email" onBlur="if(this.value=='')this.value='Email'" onFocus="if(this.value=='Email')this.value='' " v-model="question.Answer1"> <!-- JS because of IE support; better: placeholder="Email" -->
 
-                <input type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' "> <!-- JS because of IE support; better: placeholder="Password" -->
+                <input type="password" required value="Password" onBlur="if(this.value=='')this.value='Password'" onFocus="if(this.value=='Password')this.value='' " v-model="question.Answer2"> <!-- JS because of IE support; better: placeholder="Password" -->
 
                 <input type="submit" value="Login" >
 
@@ -19,6 +19,62 @@
 
     </div> <!-- end login-form -->
     </template>
+
+  <script>
+  	 import { BasicSelect } from 'vue-search-select'
+    import Alert from './Alert'
+    export default {
+        name: 'add',
+        data () {
+            return {
+                question,
+                answers: [],
+                alert:'',
+                options: [
+                    { value: '0', text: 'Respuesta #1' },
+                    { value: '1', text: 'Respuesta #2' },
+                    { value: '2', text: 'Respuesta #3' },
+                    { value: '3', text: 'Respuesta #4' },
+                ],
+                searchText: '', // If value is falsy, reset searchText & searchItem 
+                item: {
+                    value: '',
+                    item: '',
+                }
+            }
+        },
+        methods: {
+            verifyuser(e){
+                    let newQuestion = {
+                        user: this.question.Answer1,
+                        password: this.question.Answer2,
+                          
+                    }
+
+                    this.$http.post('http://localhost:3000/login', newQuestion)
+                        .then(function(response){
+                            console.log("EBTRIO");
+                            this.question = response.body;
+                            paraver();
+                            this.$router.push({path: '/', query: {alert: 'Question Added'}});
+                        });
+
+                    e.preventDefault();
+            },
+            paraver(){
+            	if(this.question==='true'){
+            		Console.log("entro");
+            	}
+            },
+        components: {
+            Alert,
+            BasicSelect
+        }
+    }
+  </script>
+
+
+
  <style scoped>
 body {
 	background: #eaeaea;

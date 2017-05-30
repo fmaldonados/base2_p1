@@ -9,3 +9,10 @@ const getPregunta = () =>
             Accept: 'aplication/JSON'
         },
     });
+const login = () =>
+    fetch(`${baseUrl.uri}/login`, {
+        method = 'Post',
+        headers: {
+            Accept: 'aplication/JSON'
+        },
+    });
