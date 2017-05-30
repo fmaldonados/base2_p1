@@ -83,10 +83,10 @@ exports.funciones = {
                 console.log(res);
                 if (res) {
                     console.log("El usuario existe");
-                    resolve(true);
+                    resolve('true');
                 } else {
                     console.log("el usuario no existe");
-                    resolve(false);
+                    resolve('false');
                 }
             });
         });

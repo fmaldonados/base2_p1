@@ -14,14 +14,9 @@ app.use(function (req, res, next) {
 
 });
 
-app.get('/hola', function (req, res) {
-    c.getPregunta().then(function (_result) {
-        res.send(_result);
-    });
-});
 
 app.post('/Add', function (req, res) {
-    c.insertarPregunta(req.body.MainQuestion,req.body.Answer1,req.body.Answer2,req.body.Answer3,req.body.Answer4,req.body.correct).then(function(_result){
+    c.insertarPregunta(req.body.MainQuestion,req.body.Answer1,req.body.Answer2,req.body.Answer3,req.body.Answer4,req.body.CorrectAnswer).then(function(_result){
         res.send(_result);
     });
     
